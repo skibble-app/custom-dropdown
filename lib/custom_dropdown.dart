@@ -135,6 +135,9 @@ class CustomDropdown<T> extends StatefulWidget {
   /// The [headerBuilder] that will be used to build [CustomDropdown] header field.
   final _HeaderBuilder<T>? headerBuilder;
 
+  /// The [footerBuilder] that will be used to build [CustomDropdown] footer.
+  final _FooterBuilder<T>? footerBuilder;
+
   /// The [hintBuilder] that will be used to build [CustomDropdown] hint of header field.
   final _HintBuilder? hintBuilder;
 
@@ -195,6 +198,7 @@ class CustomDropdown<T> extends StatefulWidget {
     this.overlayController,
     this.listItemBuilder,
     this.headerBuilder,
+    this.footerBuilder,
     this.hintBuilder,
     this.maxlines = 1,
     this.overlayHeight,
@@ -251,6 +255,7 @@ class CustomDropdown<T> extends StatefulWidget {
     this.noResultFoundText,
     this.listItemBuilder,
     this.headerBuilder,
+    this.footerBuilder,
     this.hintBuilder,
     this.noResultFoundBuilder,
     this.validator,
@@ -309,6 +314,7 @@ class CustomDropdown<T> extends StatefulWidget {
     this.noResultFoundText,
     this.listItemBuilder,
     this.headerBuilder,
+    this.footerBuilder,
     this.hintBuilder,
     this.noResultFoundBuilder,
     this.validator,
@@ -350,6 +356,8 @@ class CustomDropdown<T> extends StatefulWidget {
     this.listValidator,
     this.visibility,
     this.headerListBuilder,
+    this.footerBuilder,
+
     this.hintText,
     this.decoration,
     this.validateOnChange = true,
@@ -411,6 +419,7 @@ class CustomDropdown<T> extends StatefulWidget {
     this.hintBuilder,
     this.decoration,
     this.headerListBuilder,
+    this.footerBuilder,
     this.noResultFoundText,
     this.noResultFoundBuilder,
     this.hintText,
@@ -497,6 +506,7 @@ class CustomDropdown<T> extends StatefulWidget {
         initialItem = null,
         onChanged = null,
         headerBuilder = null,
+        footerBuilder = null,
         excludeSelected = false,
         validator = null;
 
@@ -644,6 +654,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
                   noResultFoundStyle: decoration?.noResultFoundStyle,
                   listItemStyle: decoration?.listItemStyle,
                   headerBuilder: widget.headerBuilder,
+                  footerBuilder: widget.footerBuilder,
                   headerListBuilder: widget.headerListBuilder,
                   hintText: safeHintText,
                   searchHintText: widget.searchHintText ?? 'Search',
@@ -694,6 +705,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
                     hintText: safeHintText,
                     hintBuilder: widget.hintBuilder,
                     headerBuilder: widget.headerBuilder,
+                    footerBuilder: widget.footerBuilder,
                     headerListBuilder: widget.headerListBuilder,
                     prefixIcon: enabled
                         ? decoration?.prefixIcon

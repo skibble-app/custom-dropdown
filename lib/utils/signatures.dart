@@ -11,6 +11,11 @@ typedef _HeaderBuilder<T> = Widget Function(
   T selectedItem,
   bool enabled,
 );
+
+typedef _FooterBuilder<T> = Widget Function(
+    BuildContext context
+    );
+
 typedef _HeaderListBuilder<T> = Widget Function(
   BuildContext context,
   List<T> selectedItems,

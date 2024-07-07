@@ -15,6 +15,15 @@ class MultiSelectDropdown extends StatelessWidget {
       onListChanged: (value) {
         log('MultiSelectDropdown onChanged value: $value');
       },
+      footerBuilder: (context) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Divider(),
+            TextButton(onPressed: (){}, child: Text("Add New")),
+          ],
+        );
+      },
     );
   }
 }

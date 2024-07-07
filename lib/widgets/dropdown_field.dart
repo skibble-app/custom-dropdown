@@ -19,6 +19,8 @@ class _DropDownField<T> extends StatefulWidget {
   final EdgeInsets? headerPadding;
   final int maxLines;
   final _HeaderBuilder<T>? headerBuilder;
+  final _FooterBuilder<T>? footerBuilder;
+
   final _HeaderListBuilder<T>? headerListBuilder;
   final _HintBuilder? hintBuilder;
   final _DropdownType dropdownType;
@@ -39,6 +41,7 @@ class _DropDownField<T> extends StatefulWidget {
     this.hintStyle,
     this.headerStyle,
     this.headerBuilder,
+    this.footerBuilder,
     this.shadow,
     this.headerListBuilder,
     this.hintBuilder,
@@ -75,6 +78,12 @@ class _DropDownFieldState<T> extends State<_DropDownField<T>> {
         : defaultHeaderBuilder(oneItem: selectedItem);
   }
 
+  Widget footerBuilder(BuildContext context) {
+    return widget.footerBuilder != null
+        ? widget.footerBuilder!(context, )
+        : defaultFooterBuilder();
+  }
+
   Widget headerListBuilder(BuildContext context) {
     return widget.headerListBuilder != null
         ? widget.headerListBuilder!(context, selectedItems, widget.enabled)
@@ -93,6 +102,10 @@ class _DropDownFieldState<T> extends State<_DropDownField<T>> {
             color: widget.enabled ? null : Colors.black.withOpacity(.5),
           ),
     );
+  }
+
+  Widget defaultFooterBuilder() {
+    return Container();
   }
 
   Widget defaultHintBuilder(String hint, bool enabled) {

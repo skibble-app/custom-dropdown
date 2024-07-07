@@ -33,6 +33,8 @@ class _DropdownOverlay<T> extends StatefulWidget {
   final Widget? searchRequestLoadingIndicator;
   final _ListItemBuilder<T>? listItemBuilder;
   final _HeaderBuilder<T>? headerBuilder;
+  final _FooterBuilder<T>? footerBuilder;
+
   final _HeaderListBuilder<T>? headerListBuilder;
   final _HintBuilder? hintBuilder;
   final _NoResultFoundBuilder? noResultFoundBuilder;
@@ -68,6 +70,7 @@ class _DropdownOverlay<T> extends StatefulWidget {
     required this.itemsListPadding,
     required this.listItemPadding,
     required this.headerBuilder,
+    required this.footerBuilder,
     required this.hintBuilder,
     required this.searchType,
     required this.futureRequest,
@@ -101,6 +104,12 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
     return widget.headerBuilder != null
         ? widget.headerBuilder!(context, selectedItem as T, true)
         : defaultHeaderBuilder(context, item: selectedItem);
+  }
+
+  Widget footerBuilder(BuildContext context) {
+    return widget.footerBuilder != null
+        ? widget.footerBuilder!(context)
+        : defaultFooterBuilder(context);
   }
 
   Widget headerListBuilder(BuildContext context) {
@@ -164,6 +173,11 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
           ),
     );
   }
+
+  Widget defaultFooterBuilder(BuildContext context) {
+    return Container();
+  }
+
 
   Widget defaultHintBuilder(BuildContext context, String hint) {
     return Text(
@@ -528,7 +542,9 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                       ),
                                     )
                               else
-                                items.length > 4 ? Expanded(child: list) : list
+                                items.length > 4 ? Expanded(child: list) : list,
+
+                              footerBuilder(context),
                             ],
                           ),
                         ),
